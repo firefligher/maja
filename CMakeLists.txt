@@ -6,4 +6,5 @@ add_library(
     src/huffmann.c
     src/fragment.c)
 
+target_compile_definitions(maja PRIVATE MAJA_BUILD)
 target_include_directories(maja PUBLIC include)

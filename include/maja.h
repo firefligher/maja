@@ -3,6 +3,14 @@
 
 #include <stddef.h>
 
+#if defined(_WIN32) && defined(MAJA_BUILD)
+    #define MAJA_API __declspec(dllexport)
+#elif defined(_WIN32)
+    #define MAJA_API __declspec(dllimport)
+#else
+    #define MAJA_API
+#endif
+
 #define MAJA_FRAGMENT_SIZE  (16 * 16 * 2)
 
 struct maja_fragment
@@ -11,17 +19,17 @@ struct maja_fragment
     char data[MAJA_FRAGMENT_SIZE];
 };
 
-__declspec(dllexport) int maja_fragment_decompress(
+MAJA_API int maja_fragment_decompress(
     struct maja_fragment *fragment
 );
 
-__declspec(dllexport) int maja_fragment_get_compressed_ptr(
+MAJA_API int maja_fragment_get_compressed_ptr(
     char **dst,
     struct maja_fragment *fragment,
     size_t data_length
 );
 
-__declspec(dllexport) char *maja_fragment_get_raw_ptr(
+MAJA_API char *maja_fragment_get_raw_ptr(
     struct maja_fragment *fragment
 );
 

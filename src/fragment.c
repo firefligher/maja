@@ -4,7 +4,7 @@
 static int _decodeHuffmann(char* dst, const char* src, size_t src_length);
 static int _decodeRunLength(char *dst, const char *src, size_t src_length);
 
-__declspec(dllexport) int maja_fragment_decompress(
+MAJA_API int maja_fragment_decompress(
     struct maja_fragment *fragment
 ) {
     return _decodeRunLength(
@@ -14,7 +14,7 @@ __declspec(dllexport) int maja_fragment_decompress(
     );
 }
 
-__declspec(dllexport) int maja_fragment_get_compressed_ptr(
+MAJA_API int maja_fragment_get_compressed_ptr(
     char **dst,
     struct maja_fragment *fragment,
     size_t data_length
@@ -34,7 +34,7 @@ __declspec(dllexport) int maja_fragment_get_compressed_ptr(
     return 0;
 }
 
-__declspec(dllexport) char *maja_fragment_get_raw_ptr(
+MAJA_API char *maja_fragment_get_raw_ptr(
     struct maja_fragment *fragment
 ) {
     return fragment->data;
